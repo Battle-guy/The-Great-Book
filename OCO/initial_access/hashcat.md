@@ -30,26 +30,26 @@ hashcat -w 3 -a 0 -m <hash#> /path/to/uncracked.hashes /path/to/wordlist.txt -r 
 ```
 ### Make your own rules and masks ###
 syntaxing for masks
-| Placeholder | Character Set | Example | Description |
-| ``?l`` | Lowercase letters (``a–z``) | ``?l?l?l?l`` | 4‑letter lowercase |
-| ``?u`` | Uppercase letters (``A–Z``) | ``?u?l?l?l`` | Capitalized word |
-| ``?d`` | Digits (``0–9``) | ``?d?d?d?d`` | 4‑digit PIN |
-| ``?s`` | Symbols (``!@#$%^&*``) | ``?l?l?s?d`` | Word + symbol + digit |
-| ``?a`` | All printable ASCII | ``?a?a?a?a`` | Full brute‑force |
-| ``?b`` | Binary (0x00–0xFF) | Rarely used | Raw byte brute‑force|
+
+| ``?l`` | Lowercase letters (``a–z``) | ``?l?l?l?l`` | 4‑letter lowercase |  
+| ``?u`` | Uppercase letters (``A–Z``) | ``?u?l?l?l`` | Capitalized word |  
+| ``?d`` | Digits (``0–9``) | ``?d?d?d?d`` | 4‑digit PIN |  
+| ``?s`` | Symbols (``!@#$%^&*``) | ``?l?l?s?d`` | Word + symbol + digit |  
+| ``?a`` | All printable ASCII | ``?a?a?a?a`` | Full brute‑force |  
+| ``?b`` | Binary (0x00–0xFF) | Rarely used | Raw byte brute‑force|  
 
 syntaxing for rule custom rules.
 ```bash
 #CAP first letter and append 12 to every word
 echo "c $1$2" > MyCustom.rule
 ```
-| ``c`` | Capitalize first letter | ``password`` → ``Password`` | Uppercase first character |
-| ``C`` | Capitalize entire word | ``password`` → ``PASSWORD`` | All uppercase |
-| ``$X`` | Append character ``X`` | ``$1`` → ``password1`` | Adds suffix |
-| ``^X`` | Prepend character ``X`` | ``^!`` → ``!password`` | Adds prefix |
-| ``sXY`` | Substitute ``X`` with ``Y`` | ``sa@`` → ``p@ssword`` | Leetspeak replacement |
-| ``l`` | Lowercase entire word | ``PASSWORD`` → ``password`` | All lowercase |
-| ``r`` | Reverse word | ``password`` → ``drowssap`` | Useful for mirrored patterns |
-| ``d`` | Duplicate word | ``pass`` → ``passpass`` | Doubles the candidate |
-| ``t`` | Toggle case for each letter | ``PaSs`` → ``pAsS`` | Alternating case |
-| ``:`` | No operation (used for readability) | ``:`` | Keeps word unchanged |
+| ``c`` | Capitalize first letter | ``password`` → ``Password`` | Uppercase first character |  
+| ``C`` | Capitalize entire word | ``password`` → ``PASSWORD`` | All uppercase |  
+| ``$X`` | Append character ``X`` | ``$1`` → ``password1`` | Adds suffix |  
+| ``^X`` | Prepend character ``X`` | ``^!`` → ``!password`` | Adds prefix |  
+| ``sXY`` | Substitute ``X`` with ``Y`` | ``sa@`` → ``p@ssword`` | Leetspeak replacement |  
+| ``l`` | Lowercase entire word | ``PASSWORD`` → ``password`` | All lowercase |  
+| ``r`` | Reverse word | ``password`` → ``drowssap`` | Useful for mirrored patterns |  
+| ``d`` | Duplicate word | ``pass`` → ``passpass`` | Doubles the candidate |  
+| ``t`` | Toggle case for each letter | ``PaSs`` → ``pAsS`` | Alternating case |  
+| ``:`` | No operation (used for readability) | ``:`` | Keeps word unchanged |  
